@@ -39,6 +39,7 @@ namespace Business.Concrete
             else if(car.DailyPrice <= 0)
             {
                 Console.WriteLine("Operation failed. The car daily price must be greater then 0.");
+                return;
             }
             else
             {
