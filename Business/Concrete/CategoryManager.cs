@@ -20,5 +20,20 @@ namespace Business.Concrete
         {
             return _categoryDal.GetAll();
         }
+
+        public List<Category> GetCategoryByCategoryName(string categoryName)
+        {
+            return _categoryDal.GetAll(c=> c.CategoryName == categoryName);
+        }
+
+        public List<Category> GetCategoryByDoors(short doors)
+        {
+            return _categoryDal.GetAll(c => c.Doors == doors);
+        }
+
+        public List<Category> GetCategoryBySeats(short seats)
+        {
+            return _categoryDal.GetAll(c => c.Seats == seats);
+        }
     }
 }
