@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -16,7 +17,7 @@ namespace ConsoleUI
             //CarManagerTest();
 
             //CategoryManagerTest();
-            // ColorManagerTest();
+             ColorManagerTest();
 
             BrandManagerTest();
 
@@ -25,18 +26,18 @@ namespace ConsoleUI
         private static void BrandManagerTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            List<Brand> brands = brandManager.GetAll();
-            foreach (Brand brand in brands)
+            var brandList = brandManager.GetAll();
+            foreach (Brand brand in brandList.Data)
             {
-                Console.WriteLine(" Color bilgisi: " + brand.Name);
+                Console.WriteLine(" Marka bilgisi: " + brand.Name);
             }
         }
 
         private static void ColorManagerTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            List<Color> colors = colorManager.GetAll();
-            foreach (Color color in colors)
+            var colorList = colorManager.GetAll();
+            foreach (Color color in colorList.Data)
             {
                 Console.WriteLine(" Color bilgisi: " + color.Name);
             }
@@ -45,32 +46,32 @@ namespace ConsoleUI
         private static void CategoryManagerTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            List<Category> categories = categoryManager.GetAll();
-            foreach (Category category in categories)
+            var resultCategories  = categoryManager.GetAll();
+            foreach (Category category in resultCategories.Data)
             {
                 Console.WriteLine(" Category bilgisi: " + category.CategoryName);
             }
 
-            List<Category> categories2 = categoryManager.GetCategoryByCategoryName("Economy");
-            foreach (Category category in categories2)
+            var resultCategoriesByName = categoryManager.GetCategoryByCategoryName("Economy");
+            foreach (Category category in resultCategoriesByName.Data)
             {
                 Console.WriteLine(" Category : " + category.CategoryName);
             }
 
-            List<Category> categories3 = categoryManager.GetCategoryByDoors(2);
-            foreach (Category category in categories3)
+            var resultCategoriesByNameByDoors2 = categoryManager.GetCategoryByDoors(2);
+            foreach (Category category in resultCategoriesByNameByDoors2.Data)
             {
                 Console.WriteLine(" Category  2 kapililar: " + category.CategoryName);
             }
 
-            List<Category> categories4 = categoryManager.GetCategoryByDoors(4);
-            foreach (Category category in categories4)
+            var resultCategoriesByNameByDoors4 = categoryManager.GetCategoryByDoors(4);
+            foreach (Category category in resultCategoriesByNameByDoors4.Data)
             {
                 Console.WriteLine(" Category  4 kapililar: " + category.CategoryName);
             }
 
-            List<Category> categories5 = categoryManager.GetCategoryBySeats(4);
-            foreach (Category category in categories5)
+            var resultCategoriesByNameBySeats = categoryManager.GetCategoryBySeats(4);
+            foreach (Category category in resultCategoriesByNameBySeats.Data)
             {
                 Console.WriteLine(" Category  4 kisilikler: " + category.CategoryName);
             }
@@ -79,9 +80,8 @@ namespace ConsoleUI
         private static void CarManagerDTOTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            List<CarDetailDto> cars = carManager.GetCarDetails();
-            foreach (CarDetailDto car in cars)
+            var result = carManager.GetCarDetails();
+            foreach (CarDetailDto car in result.Data)
             {
                 Console.WriteLine(" Car Name: " + car.CarName
                                     + " BrandName:" + car.BrandName
@@ -96,26 +96,29 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             //carManager.Add(new Car { BrandId = 3, ColorId = 3, CategoryId = 4, ModelYear = 2021, Description = "ilk car ekleme denemesi", CarName = "Hundai", DailyPrice = 250 });
 
-            List<Car> cars = carManager.GetCarsByBrandId(3);
-            foreach (Car car in cars)
+            var result = carManager.GetCarsByBrandId(3);
+            foreach (Car car in result.Data)
             {
                 Console.WriteLine(" Araba Marka bilgisi: " + car.Description);
             }
 
-            List<Car> cars2 = carManager.GetCarsByColorId(2);
-            foreach (Car car in cars2)
+            var result2 = carManager.GetCarsByColorId(2);
+            foreach (Car car in result2.Data)
             {
                 Console.WriteLine(" Araba renk bilgisi: " + car.Description);
             }
 
-            Car car1 = carManager.GetCarById(1002);
-            car1.Description = " bu kayit guncellendi..";
-            carManager.Update(car1);
+            var result4 = carManager.GetCarById(2002);
+            result4.Data.Description = " bu kayit guncellendi..";
+            carManager.Update(result4.Data);
+            Result islem = (Result)carManager.Update(result4.Data);
+            Console.WriteLine(islem.Succsess + " " + islem.Message);
 
-            carManager.Delete(car1);
+            Result islem2 = (Result)carManager.Delete(result4.Data);
+            Console.WriteLine(islem2.Succsess + " " + islem2.Message);
 
-            List<Car> cars3= carManager.GetCarsByModelYear(2021);
-            foreach (Car car in cars3)
+            var result3 = carManager.GetCarsByModelYear(2021);
+            foreach (Car car in result3.Data)
             {
                 Console.WriteLine(" Araba Model yili bilgisi: " + car.ModelYear);
             }

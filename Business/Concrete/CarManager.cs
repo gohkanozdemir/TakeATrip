@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -17,79 +19,72 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-           return _carDal.GetAll();
+           return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ListedMessage);
         }
-        public List<Car> GetCarsByBrandId(int brandId)
+        public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetAll(p => p.BrandId == brandId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == brandId));
         }
-        public List<Car> GetCarsByColorId(int colorId)
+        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return _carDal.GetAll(p => p.ColorId == colorId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId), Messages.ListedMessage);
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.CarName.Length <= 2)
             {
-                Console.WriteLine("Operation failed. The car name must be greater then 2 chcracters.");
-                return;
+                return new ErrorResult(Messages.CarNameInvalid);
             }
             else if(car.DailyPrice <= 0)
             {
-                Console.WriteLine("Operation failed. The car daily price must be greater then 0.");
-                return;
+                return new ErrorResult(Messages.CarDailyPriceInvalid);
             }
             else
             {
                 _carDal.Add(car);
-                Console.WriteLine("Car added successfully.");
+                return new Result(true, Messages.MakeMessage(car.CarName , Messages.AddedMessage));
             }            
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
-            Console.WriteLine(car.Id + " Car updated successfully.");
+            return new Result(true, Messages.MakeMessage(car.CarName, Messages.UpdatedMessage));
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine(car.Id + " Car deleted successfully.");
+            return new Result(true, Messages.MakeMessage(car.CarName, Messages.DeletedMessage));
 
         }
 
-        public Car GetCarById(int carId)
+        public IDataResult<Car> GetCarById(int carId)
         {
-            return _carDal.Get(p => p.Id == carId);
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == carId));
         }
 
-        public List<Car> GetCarsByModelYear(int modelYear)
+        public IDataResult<List<Car>> GetCarsByModelYear(int modelYear)
         {
-            return _carDal.GetAll(p => p.ModelYear == modelYear);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ModelYear == modelYear), Messages.ListedMessage);
         }
 
-        public List<Car> GetCarsByDailyPrice(decimal dailyPrice)
+        public IDataResult<List<Car>> GetCarsByDailyPrice(decimal dailyPrice)
         {
-            return _carDal.GetAll(p => p.DailyPrice == dailyPrice);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice == dailyPrice), Messages.ListedMessage);
         }
 
-        public List<Car> GetCarsByCarName(string carName)
+        public IDataResult<List<Car>> GetCarsByCarName(string carName)
         {
-            return _carDal.GetAll(p => p.CarName== carName);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.CarName== carName), Messages.ListedMessage);
         }
-
-        //public Car GetCarByName(string carName)
-        //{
-        //    return _carDal.GetFirst(p => p.CarName == carName);
-        //}
     }
 }
