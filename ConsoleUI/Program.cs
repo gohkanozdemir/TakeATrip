@@ -17,10 +17,67 @@ namespace ConsoleUI
             //CarManagerTest();
 
             //CategoryManagerTest();
-             ColorManagerTest();
+            ColorManagerTest();
 
-            BrandManagerTest();
+            //BrandManagerTest();
 
+            //UserManagerTest();
+           // RentalManagerTest();
+
+        }
+
+        private static void RentalManagerTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetRentalByCarId(1);
+            bool isAvailableCar = rentalManager.CarIsAvailable(result.Data);
+            if (isAvailableCar)
+            {
+                rentalManager.Add(new Rental
+                {
+                    CarId = 1,
+                    CustomerId = 1,
+                    RentDate = DateTime.Now,
+                    ReturnDate = (DateTime)System.Data.SqlTypes.SqlDateTime.Null
+                });
+            }
+            else
+            {
+                Console.WriteLine(result.Data.CarId + " Car is not Available ");
+            }
+        }
+
+        private static void UserManagerTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            //userManager.Add(new User { FirstName = "Hikmet", LastName = "Kandemir", Email = "email1@gmail.com", Password = "123456789" });
+            //userManager.Add(new User { FirstName = "Ahmet", LastName = "Guzel", Email = "email2@gmail.com", Password = "123456789" });
+            //userManager.Add(new User { FirstName = "Hakki", LastName = "Tanriverdi", Email = "email3@gmail.com", Password = "123456789" });
+
+            var result = userManager.GetAll();
+            foreach (User user in result.Data)
+            {
+                Console.WriteLine(" User bilgisi: " + user.FirstName + " " + user.LastName);
+            }
+
+            var result2 = userManager.GetUserById(1);
+            Console.WriteLine(" GetUserById User bilgisi: " + result2.Data.FirstName + " " + result2.Data.LastName);
+
+            var result3 = userManager.GetUserByName("Ahmet");
+            Console.WriteLine(" GetUserByName User bilgisi: " + result3.Data.FirstName + " " + result3.Data.LastName);
+
+            var result4 = userManager.GetUserByFullName("Ahmet", "Guzel");
+            Console.WriteLine(" GetUserByFullName User bilgisi: " + result4.Data.FirstName + " " + result4.Data.LastName);
+
+            var result5 = userManager.GetUserByFullName("Ahmet", "Guzelll");
+            if (result5.Data == null)
+            {
+                Console.WriteLine("kayit bulunamadi!!!");
+            }
+            else
+            {
+                Console.WriteLine(" GetUserByFullName false User bilgisi: " + result5.Data.FirstName + " " + result5.Data.LastName);
+            }
         }
 
         private static void BrandManagerTest()
