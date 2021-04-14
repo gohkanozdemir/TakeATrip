@@ -27,7 +27,7 @@ namespace Business.Concrete
 
         public IResult Delete(Customer customer)
         {
-            _customerDal.Update(customer);
+            _customerDal.Delete(customer);
             return new SuccessResult(Messages.MakeMessage(customer.CompanyName, Messages.DeletedMessage));
         }
 
@@ -38,12 +38,12 @@ namespace Business.Concrete
 
         public IDataResult<List<CustomerDetailDto>> GetCompanyDetails()
         {
-            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails());
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(), Messages.ListedMessage);
         }
 
         public IDataResult<Customer> GetCustomerById(int customerId)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c=> c.Id == customerId));
+            return new SuccessDataResult<Customer>(_customerDal.Get(c=> c.Id == customerId), Messages.FetchedMessage);
         }
 
         public IResult Update(Customer customer)

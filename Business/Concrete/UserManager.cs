@@ -32,22 +32,22 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll());
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.ListedMessage);
         }
 
         public IDataResult<User> GetUserByFullName(string firstName, string lastName)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u=> u.FirstName == firstName && u.LastName == lastName));
+            return new SuccessDataResult<User>(_userDal.Get(u=> u.FirstName == firstName && u.LastName == lastName), Messages.FetchedMessage);
         }
 
         public IDataResult<User> GetUserById(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId), Messages.FetchedMessage);
         }
 
         public IDataResult<User> GetUserByName(string firstName)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.FirstName == firstName));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.FirstName == firstName), Messages.FetchedMessage);
         }
 
         public IResult Update(User user)

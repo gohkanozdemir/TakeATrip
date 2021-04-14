@@ -38,17 +38,17 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailDto>> GetCompanyDetails()
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.ListedMessage);
         }
 
         public IDataResult<Rental> GetRentalByCarId(int carId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.CarId == carId));
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.CarId == carId), Messages.FetchedMessage);
         }
 
         public IDataResult<Rental> GetRentalById(int rentalId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId), Messages.FetchedMessage);
         }
 
         public IResult Update(Rental rental)
