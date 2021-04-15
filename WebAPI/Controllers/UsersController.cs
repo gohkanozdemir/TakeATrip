@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         public IActionResult getall()
         {
             var result = _userService.GetAll();
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyid(int id)
         {
             var result = _userService.GetUserById(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyname(string name)
         {
             var result = _userService.GetUserByName(name);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyfullname(string name, string  lastname)
         {
             var result = _userService.GetUserByFullName(name, lastname);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -67,7 +67,7 @@ namespace WebAPI.Controllers
         public IActionResult add(User user)
         {
             var result = _userService.Add(user);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -78,7 +78,7 @@ namespace WebAPI.Controllers
         public IActionResult update(User user)
         {
             var result = _userService.Update(user);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -89,7 +89,7 @@ namespace WebAPI.Controllers
         public IActionResult delte(User user)
         {
             var result = _userService.Delete(user);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }

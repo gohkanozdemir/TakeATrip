@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         public IActionResult getall()
         {
             var result = _carService.GetAll();
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         public IActionResult getbycarid(int id)
         {
             var result = _carService.GetCarById(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         public IActionResult getbybrandid(int id)
         {
             var result = _carService.GetCarsByBrandId(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         public IActionResult getbycolorid(int id)
         {
             var result = _carService.GetCarsByColorId(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
         public IActionResult getbymodelyear(int modelYear)
         {
             var result = _carService.GetCarsByModelYear(modelYear);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyprice(decimal price)
         {
             var result = _carService.GetCarsByDailyPrice(price);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
         public IActionResult getbycarname(string name)
         {
             var result = _carService.GetCarsByCarName(name);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -98,7 +98,7 @@ namespace WebAPI.Controllers
         public IActionResult getcarsdetails()
         {
             var result = _carService.GetCarDetails();
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -109,7 +109,7 @@ namespace WebAPI.Controllers
         public IActionResult getcardetails(int id)
         {
             var result = _carService.GetCarDetailsById(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -119,7 +119,7 @@ namespace WebAPI.Controllers
         public IActionResult add(Car car)
         {
             var result = _carService.Add(car);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -130,7 +130,7 @@ namespace WebAPI.Controllers
         public IActionResult update(Car car)
         {
             var result = _carService.Update(car);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -140,7 +140,7 @@ namespace WebAPI.Controllers
         public IActionResult delete(Car car)
         {
             var result = _carService.Delete(car);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }

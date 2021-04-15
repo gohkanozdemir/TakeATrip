@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         public IActionResult getall()
         {
             var result = _rentalService.GetAll();
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         public IActionResult getbycar(int id)
         {
             var result = _rentalService.GetRentalByCarId(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyid(int id)
         {
             var result = _rentalService.GetRentalById(id);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -57,7 +57,7 @@ namespace WebAPI.Controllers
         public IActionResult getdetails()
         {
             var result = _rentalService.GetCompanyDetails();
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
         public IActionResult add(Rental rental)
         {
             var result = _rentalService.Add(rental);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
         public IActionResult update(Rental rental)
         {
             var result = _rentalService.Update(rental);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -90,7 +90,7 @@ namespace WebAPI.Controllers
         public IActionResult delte(Rental rental)
         {
             var result = _rentalService.Delete(rental);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }

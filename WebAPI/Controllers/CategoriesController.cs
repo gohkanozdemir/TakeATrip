@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         public IActionResult getall()
         {
             var result = _categoryService.GetAll();
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         public IActionResult getbydoors(short number)
         {
             var result = _categoryService.GetCategoryByDoors(number);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyseats(short number)
         {
             var result = _categoryService.GetCategoryBySeats(number);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         public IActionResult getbyname(string name)
         {
             var result = _categoryService.GetCategoryByCategoryName(name);
-            if (result.Succsess)
+            if (result.Success)
             {
                 return Ok(result);
             }

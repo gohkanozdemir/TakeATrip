@@ -169,10 +169,10 @@ namespace ConsoleUI
             result4.Data.Description = " bu kayit guncellendi..";
             carManager.Update(result4.Data);
             Result islem = (Result)carManager.Update(result4.Data);
-            Console.WriteLine(islem.Succsess + " " + islem.Message);
+            Console.WriteLine(islem.Success + " " + islem.Message);
 
             Result islem2 = (Result)carManager.Delete(result4.Data);
-            Console.WriteLine(islem2.Succsess + " " + islem2.Message);
+            Console.WriteLine(islem2.Success + " " + islem2.Message);
 
             var result3 = carManager.GetCarsByModelYear(2021);
             foreach (Car car in result3.Data)

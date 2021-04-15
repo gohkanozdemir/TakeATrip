@@ -13,6 +13,7 @@ namespace Business.Constants
         public static string FetchedMessage = "Kayit getiridi.";
         public static string CarNameInvalid = "Operation failed. The car name must be greater then 2 chcracters.";
         public static string CarDailyPriceInvalid = "Operation failed. The car daily price must be greater then 0.";
+        public static string CarImageLimitedExceded = "Bu araba icin daha fazla resim yukleyemezsiniz!";
         public static string MakeMessage(string message1, string message2)
         {
             return (message1 + " " + message2);
