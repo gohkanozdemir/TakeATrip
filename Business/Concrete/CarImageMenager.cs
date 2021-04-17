@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Business;
 using Core.Utilities.Helpers;
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
+        [SecuredOperation("image.add,admin")]
         public IResult Add(IFormFile file, CarImage carImage)
         {
             // en fazla 5 resim yukleyebilir
@@ -45,6 +47,7 @@ namespace Business.Concrete
             return new Result(true, Messages.AddedMessage);
         }
 
+        [SecuredOperation("image.delete,admin")]
         public IResult Delete(IFormFile file, CarImage carImage)
         {
             _carImageDal.Delete(carImage);
@@ -71,6 +74,7 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.CarId == carId), Messages.FetchedMessage);
         }
 
+        [SecuredOperation("image.update,admin")]
         public IResult Update(IFormFile file, CarImage carImage)
         {
             _carImageDal.Update(carImage);

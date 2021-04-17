@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Validation;
@@ -25,14 +26,18 @@ namespace Business.Concrete
         {
            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ListedMessage);
         }
+
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == brandId), Messages.ListedMessage);
         }
+
         public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId), Messages.ListedMessage);
         }
+
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -51,6 +56,7 @@ namespace Business.Concrete
             }            
         }
 
+        
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.ListedMessage);
@@ -61,12 +67,14 @@ namespace Business.Concrete
             return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailsById(carId), Messages.FetchedMessage);
         }
 
+        [SecuredOperation("car.update,admin")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
             return new Result(true, Messages.MakeMessage(car.CarName, Messages.UpdatedMessage));
         }
 
+        [SecuredOperation("car.delete,admin")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
