@@ -33,7 +33,7 @@ namespace WebAPI
                 // burada izin verilen domainler eklenir
                 options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:3000"));
             });
-            services.AddHttpContextAccessor();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -41,7 +41,7 @@ namespace WebAPI
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidateAudience = true,
+                        ValidateAudience = false,  // null oldugu icin kapattim
                         ValidateLifetime = true,
                         ValidIssuer = tokenOptions.Issuer,
                         ValidAudience = tokenOptions.Audience,
