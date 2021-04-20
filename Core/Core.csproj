@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -9,17 +9,19 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="FluentValidation" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.10.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aspects\Caching\" />
-    <Folder Include="Aspects\Exception\" />
-    <Folder Include="Aspects\Logging\" />
-    <Folder Include="Aspects\Transaction\" />
-    <Folder Include="Aspects\Performance\" />
+    <Folder Include="Aspects\Autofac\Exception\" />
+    <Folder Include="Aspects\Autofac\Logging\" />
+    <Folder Include="CrossCuttingConcerns\Caching\Redis\" />
   </ItemGroup>
 
 </Project>

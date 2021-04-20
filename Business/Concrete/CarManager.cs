@@ -2,7 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Validation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -22,6 +22,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [SecuredOperation("car.list")]
         public IDataResult<List<Car>> GetAll()
         {
            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ListedMessage);

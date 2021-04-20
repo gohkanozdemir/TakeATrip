@@ -19,14 +19,13 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        [SecuredOperation("admin")]
         public IResult Add(User user)
         {
             _userDal.Add(user);
             return new SuccessResult(Messages.MakeMessage(user.FirstName + " " + user.LastName, Messages.AddedMessage));
         }
 
-        [SecuredOperation("admin")]
+        [SecuredOperation("user,admin")]
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
@@ -39,19 +38,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.ListedMessage);
         }
 
-        // [SecuredOperation("admin")]  login olma sirasinda kullanildigindan 401 unauthorize hatasi aldim
         public IDataResult<User> GetByMail(string email)
         {
             return new SuccessDataResult<User>(_userDal.Get(filter: u => u.Email == email));
         }
 
-        //[SecuredOperation("admin")]  login olma sirasinda kullanildigindan 401 unauthorize hatasi aldim
         public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user), Messages.ListedMessage);
         }
 
-        [SecuredOperation("admin")]
+        [SecuredOperation("user, admin")]
         public IDataResult<User> GetUserByFullName(string firstName, string lastName)
         {
             return new SuccessDataResult<User>(_userDal.Get(u=> u.FirstName == firstName && u.LastName == lastName), Messages.FetchedMessage);

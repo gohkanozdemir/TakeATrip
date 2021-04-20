@@ -11,7 +11,7 @@ namespace Core.Extensions
         public static List<string> Claims(this ClaimsPrincipal claimsPrincipal, string claimType)
         {
             var result = claimsPrincipal?.FindAll(claimType)?.Select(x => x.Value).ToList();
-            return result;
+            return result; 
         }
 
         public static List<string> ClaimRoles(this ClaimsPrincipal claimsPrincipal)

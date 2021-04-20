@@ -6,8 +6,6 @@ using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Business.BusinessAspects.Autofac
 {
@@ -20,7 +18,6 @@ namespace Business.BusinessAspects.Autofac
         {
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
-
         }
 
         protected override void OnBefore(IInvocation invocation)
@@ -33,6 +30,7 @@ namespace Business.BusinessAspects.Autofac
                     return;
                 }
             }
+            //_httpContextAccessor.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;  
             throw new Exception(Messages.AuthorizationDenied);
         }
     }
