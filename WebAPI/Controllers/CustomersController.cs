@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult getall()
+        public IActionResult GetAll()
         {
             var result = _customerService.GetAll();
             if (result.Success)
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getdetails")]
-        public IActionResult getdetails()
+        public IActionResult GetDetails()
         {
             var result = _customerService.GetCompanyDetails();
             if (result.Success)
@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult getbyid(int id)
+        public IActionResult GetById(int id)
         {
             var result = _customerService.GetCustomerById(id);
             if (result.Success)
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult add(Customer customer)
+        public IActionResult Add(Customer customer)
         {
             var result = _customerService.Add(customer);
             if (result.Success)
@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]  // [HttpPut] da olabilir
-        public IActionResult update(Customer customer)
+        public IActionResult Update(Customer customer)
         {
             var result = _customerService.Update(customer);
             if (result.Success)
@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]  // [HttpDelete] da olabilir
-        public IActionResult delete(Customer customer)
+        public IActionResult Delete(Customer customer)
         {
             var result = _customerService.Delete(customer);
             if (result.Success)

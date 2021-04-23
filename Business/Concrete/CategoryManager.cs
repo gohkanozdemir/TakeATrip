@@ -23,9 +23,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.ListedMessage); 
         }
 
-        public IDataResult<List<Category>> GetCategoryByCategoryName(string categoryName)
+        public IDataResult<List<Category>> GetCategoryByCategoryId(int carCategoryId)
         {
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c=> c.CategoryName == categoryName), Messages.ListedMessage);
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c=> c.CarCategoryId == carCategoryId), Messages.ListedMessage);
         }
 
         public IDataResult<List<Category>> GetCategoryByDoors(short doors)

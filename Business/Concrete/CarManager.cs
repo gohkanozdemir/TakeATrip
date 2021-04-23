@@ -22,7 +22,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [SecuredOperation("car.list")]
+        //[SecuredOperation("car.list")]
         public IDataResult<List<Car>> GetAll()
         {
            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ListedMessage);
@@ -36,6 +36,11 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId), Messages.ListedMessage);
+        }
+
+        public IDataResult<List<Car>> GetCarsByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.CategoryId == categoryId), Messages.ListedMessage);
         }
 
         [SecuredOperation("car.add,admin")]
@@ -58,11 +63,14 @@ namespace Business.Concrete
         }
 
         
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarsDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.ListedMessage);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails(), Messages.ListedMessage);
         }
-
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetailsByCategoryId(categoryId), Messages.FetchedMessage);
+        }
         public IDataResult<CarDetailDto> GetCarDetailsById(int carId)
         {
             return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailsById(carId), Messages.FetchedMessage);

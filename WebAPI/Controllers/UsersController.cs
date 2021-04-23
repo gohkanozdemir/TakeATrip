@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _userService = userService;
         }
         [HttpGet("getall")]
-        public IActionResult getall()
+        public IActionResult GetAll()
         {
             var result = _userService.GetAll();
             if (result.Success)
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult getbyid(int id)
+        public IActionResult GetById(int id)
         {
             var result = _userService.GetUserById(id);
             if (result.Success)
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyname")]
-        public IActionResult getbyname(string name)
+        public IActionResult GetByName(string name)
         {
             var result = _userService.GetUserByName(name);
             if (result.Success)
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyfullname")]
-        public IActionResult getbyfullname(string name, string  lastname)
+        public IActionResult GetByFullName(string name, string  lastname)
         {
             var result = _userService.GetUserByFullName(name, lastname);
             if (result.Success)
@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult add(User user)
+        public IActionResult Add(User user)
         {
             var result = _userService.Add(user);
             if (result.Success)
@@ -75,7 +75,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult update(User user)
+        public IActionResult Update(User user)
         {
             var result = _userService.Update(user);
             if (result.Success)
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult delte(User user)
+        public IActionResult Delete(User user)
         {
             var result = _userService.Delete(user);
             if (result.Success)

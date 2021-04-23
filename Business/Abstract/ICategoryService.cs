@@ -11,6 +11,6 @@ namespace Business.Abstract
         IDataResult<List<Category>> GetAll();
         IDataResult<List<Category>> GetCategoryByDoors(short doors);
         IDataResult<List<Category>> GetCategoryBySeats(short seats);
-        IDataResult<List<Category>> GetCategoryByCategoryName(string categoryName);
+        IDataResult<List<Category>> GetCategoryByCategoryId(int carCategoryId);
     }
 }

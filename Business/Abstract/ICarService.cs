@@ -12,11 +12,13 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetAll();
         IDataResult<List<Car>> GetCarsByBrandId(int brandId);
         IDataResult<List<Car>> GetCarsByColorId(int colorId);
+        IDataResult<List<Car>> GetCarsByCategoryId(int categoryId);
         IDataResult<List<Car>> GetCarsByModelYear(int modelYear);
         IDataResult<List<Car>> GetCarsByDailyPrice(decimal dailyPrice);
         IDataResult<List<Car>> GetCarsByCarName(string carName);
         IDataResult<Car> GetCarById(int carId);
-        IDataResult<List<CarDetailDto>> GetCarDetails();
+        IDataResult<List<CarDetailDto>> GetCarsDetails();
+        IDataResult<List<CarDetailDto>> GetCarsDetailsByCategoryId(int categoryId);
         IDataResult<CarDetailDto> GetCarDetailsById(int carId);
         IResult Add(Car car);
         IResult Update(Car car);

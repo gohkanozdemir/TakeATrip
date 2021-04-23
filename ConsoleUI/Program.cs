@@ -107,45 +107,44 @@ namespace ConsoleUI
             var resultCategories  = categoryManager.GetAll();
             foreach (Category category in resultCategories.Data)
             {
-                Console.WriteLine(" Category bilgisi: " + category.CategoryName);
+                Console.WriteLine(" Category bilgisi: " + category.CarCategoryId);
             }
 
-            var resultCategoriesByName = categoryManager.GetCategoryByCategoryName("Economy");
+            var resultCategoriesByName = categoryManager.GetCategoryByCategoryId(2);
             foreach (Category category in resultCategoriesByName.Data)
             {
-                Console.WriteLine(" Category : " + category.CategoryName);
+                Console.WriteLine(" Category : " + category.CarCategoryId);
             }
 
             var resultCategoriesByNameByDoors2 = categoryManager.GetCategoryByDoors(2);
             foreach (Category category in resultCategoriesByNameByDoors2.Data)
             {
-                Console.WriteLine(" Category  2 kapililar: " + category.CategoryName);
+                Console.WriteLine(" Category  2 kapililar: " + category.CarCategoryId);
             }
 
             var resultCategoriesByNameByDoors4 = categoryManager.GetCategoryByDoors(4);
             foreach (Category category in resultCategoriesByNameByDoors4.Data)
             {
-                Console.WriteLine(" Category  4 kapililar: " + category.CategoryName);
+                Console.WriteLine(" Category  4 kapililar: " + category.CarCategoryId);
             }
 
             var resultCategoriesByNameBySeats = categoryManager.GetCategoryBySeats(4);
             foreach (Category category in resultCategoriesByNameBySeats.Data)
             {
-                Console.WriteLine(" Category  4 kisilikler: " + category.CategoryName);
+                Console.WriteLine(" Category  4 kisilikler: " + category.CarCategoryId);
             }
         }
 
         private static void CarManagerDTOTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.GetCarDetails();
+            var result = carManager.GetCarsDetails();
             foreach (CarDetailDto car in result.Data)
             {
                 Console.WriteLine(" Car Name: " + car.CarName
                                     + " BrandName:" + car.BrandName
                                     + " ColorName:" + car.ColorName
-                                    + " CategoryName:" + car.CategoryName
-                                    + " DailyPrice:" + car.DailyPrice);
+                                    + " CategoryName:" + car.CategoryName);
             }
         }
 

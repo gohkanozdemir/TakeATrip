@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult getall()
+        public IActionResult GetAll()
         {
             var result = _categoryService.GetAll();
             if (result.Success)
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbydoors")]
-        public IActionResult getbydoors(short number)
+        public IActionResult GetByDoors(short number)
         {
             var result = _categoryService.GetCategoryByDoors(number);
             if (result.Success)
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyseats")]
-        public IActionResult getbyseats(short number)
+        public IActionResult GetBySeats(short number)
         {
             var result = _categoryService.GetCategoryBySeats(number);
             if (result.Success)
@@ -53,10 +53,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyname")]
-        public IActionResult getbyname(string name)
+        [HttpGet("getbycategoryid")]
+        public IActionResult GetByCategoryId(int id)
         {
-            var result = _categoryService.GetCategoryByCategoryName(name);
+            var result = _categoryService.GetCategoryByCategoryId(id);
             if (result.Success)
             {
                 return Ok(result);

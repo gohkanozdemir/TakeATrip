@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult getall()
+        public IActionResult GetAll()
         {
             var result = _rentalService.GetAll();
             if (result.Success)
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycar")]
-        public IActionResult getbycar(int id)
+        public IActionResult GetByCar(int id)
         {
             var result = _rentalService.GetRentalByCarId(id);
             if (result.Success)
@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult getbyid(int id)
+        public IActionResult GetById(int id)
         {
             var result = _rentalService.GetRentalById(id);
             if (result.Success)
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getdetails")]
-        public IActionResult getdetails()
+        public IActionResult GetDetails()
         {
             var result = _rentalService.GetCompanyDetails();
             if (result.Success)
@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult add(Rental rental)
+        public IActionResult Add(Rental rental)
         {
             var result = _rentalService.Add(rental);
             if (result.Success)
@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult update(Rental rental)
+        public IActionResult Update(Rental rental)
         {
             var result = _rentalService.Update(rental);
             if (result.Success)
@@ -88,7 +88,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult delte(Rental rental)
+        public IActionResult Delete(Rental rental)
         {
             var result = _rentalService.Delete(rental);
             if (result.Success)
