@@ -25,28 +25,6 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbydoors")]
-        public IActionResult GetByDoors(short number)
-        {
-            var result = _categoryService.GetCategoryByDoors(number);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyseats")]
-        public IActionResult GetBySeats(short number)
-        {
-            var result = _categoryService.GetCategoryBySeats(number);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
         [HttpGet("getbycategoryid")]
         public IActionResult GetByCategoryId(int id)
         {

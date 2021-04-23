@@ -20,14 +20,14 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              join ct in context.Categories
                              on c.CategoryId equals ct.Id
-                             join cc in context.CarCategories
-                             on ct.CarCategoryId equals cc.Id
+                             join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             on ct.Id equals cf.CategoryId
                              select new CarDetailDto
                              {
                                  CarName = c.CarName,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
-                                 CategoryName = cc.CategoryName,
+                                 CategoryName = ct.CategoryName,
                              };
                 return result.ToList();
             }
@@ -44,15 +44,15 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              join ct in context.Categories
                              on c.CategoryId equals ct.Id
-                             join cc in context.CarCategories
-                             on ct.CarCategoryId equals cc.Id
+                             join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             on ct.Id equals cf.CategoryId
                              where c.Id == carId
                              select new CarDetailDto
                              {
                                  CarName = c.CarName,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
-                                 CategoryName = cc.CategoryName,
+                                 CategoryName = ct.CategoryName,
                              };
                 return result.FirstOrDefault();
             }
@@ -69,15 +69,15 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              join ct in context.Categories
                              on c.CategoryId equals ct.Id
-                             join cc in context.CarCategories
-                             on ct.CarCategoryId equals cc.Id
+                             join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             on ct.Id equals cf.CategoryId
                              where c.CategoryId == categoryId
                              select new CarDetailDto
                              {
                                  CarName = c.CarName,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
-                                 CategoryName = cc.CategoryName,
+                                 CategoryName = ct.CategoryName,
                              };
                 return result.ToList();
             }

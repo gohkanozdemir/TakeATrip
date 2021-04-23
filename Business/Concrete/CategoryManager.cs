@@ -21,19 +21,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.ListedMessage); 
         }
 
-        public IDataResult<List<Category>> GetCategoryByCategoryId(int carCategoryId)
+        public IDataResult<List<Category>> GetCategoryByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c=> c.CarCategoryId == carCategoryId), Messages.ListedMessage);
-        }
-
-        public IDataResult<List<Category>> GetCategoryByDoors(short doors)
-        {
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c => c.Doors == doors), Messages.ListedMessage);
-        }
-
-        public IDataResult<List<Category>> GetCategoryBySeats(short seats)
-        {
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c => c.Seats == seats), Messages.ListedMessage);
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c=> c.Id == categoryId), Messages.ListedMessage);
         }
     }
 }

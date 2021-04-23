@@ -102,34 +102,35 @@ namespace ConsoleUI
         private static void CategoryManagerTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            CarFeatureManager carFeatureManager = new CarFeatureManager(new EfCarFeatureDal());
             var resultCategories  = categoryManager.GetAll();
             foreach (Category category in resultCategories.Data)
             {
-                Console.WriteLine(" Category bilgisi: " + category.CarCategoryId);
+                Console.WriteLine(" Category bilgisi: " + category.CategoryName);
             }
 
             var resultCategoriesByName = categoryManager.GetCategoryByCategoryId(2);
             foreach (Category category in resultCategoriesByName.Data)
             {
-                Console.WriteLine(" Category : " + category.CarCategoryId);
+                Console.WriteLine(" Category : " + category.CategoryName);
             }
 
-            var resultCategoriesByNameByDoors2 = categoryManager.GetCategoryByDoors(2);
-            foreach (Category category in resultCategoriesByNameByDoors2.Data)
+            var resultCategoriesByNameByDoors2 = carFeatureManager.GetCarFeatureByDoors(2);
+            foreach (CarFeature carFeature in resultCategoriesByNameByDoors2.Data)
             {
-                Console.WriteLine(" Category  2 kapililar: " + category.CarCategoryId);
+                Console.WriteLine(" Category  2 kapililar: " + carFeature.Doors);
             }
 
-            var resultCategoriesByNameByDoors4 = categoryManager.GetCategoryByDoors(4);
-            foreach (Category category in resultCategoriesByNameByDoors4.Data)
+            var resultCategoriesByNameByDoors4 = carFeatureManager.GetCarFeatureByDoors(4);
+            foreach (CarFeature carFeature in resultCategoriesByNameByDoors4.Data)
             {
-                Console.WriteLine(" Category  4 kapililar: " + category.CarCategoryId);
+                Console.WriteLine(" Category  4 kapililar: " + carFeature.Doors);
             }
 
-            var resultCategoriesByNameBySeats = categoryManager.GetCategoryBySeats(4);
-            foreach (Category category in resultCategoriesByNameBySeats.Data)
+            var resultCategoriesByNameBySeats = carFeatureManager.GetCarFeatureBySeats(4);
+            foreach (CarFeature carFeature in resultCategoriesByNameBySeats.Data)
             {
-                Console.WriteLine(" Category  4 kisilikler: " + category.CarCategoryId);
+                Console.WriteLine(" Category  4 kisilikler: " + carFeature.Seats);
             }
         }
 
