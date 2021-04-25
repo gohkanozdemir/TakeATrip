@@ -20,14 +20,18 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              join ct in context.Categories
                              on c.CategoryId equals ct.Id
-                             join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
-                             on ct.Id equals cf.CategoryId
+                             //join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             //on ct.Id equals cf.CategoryId
                              select new CarDetailDto
                              {
+                                 Id= c.Id,
                                  CarName = c.CarName,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
                                  CategoryName = ct.CategoryName,
+                                 ModelYear= c.ModelYear,
+                                 DailyPrice= c.DailyPrice,
+                                 Description = c.Description
                              };
                 return result.ToList();
             }
@@ -44,15 +48,19 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              join ct in context.Categories
                              on c.CategoryId equals ct.Id
-                             join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
-                             on ct.Id equals cf.CategoryId
+                             //join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             //on ct.Id equals cf.CategoryId
                              where c.Id == carId
                              select new CarDetailDto
                              {
+                                 Id = c.Id,
                                  CarName = c.CarName,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
                                  CategoryName = ct.CategoryName,
+                                 ModelYear = c.ModelYear,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description
                              };
                 return result.FirstOrDefault();
             }
@@ -69,15 +77,77 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ColorId equals cl.Id
                              join ct in context.Categories
                              on c.CategoryId equals ct.Id
-                             join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
-                             on ct.Id equals cf.CategoryId
+                             //join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             //on ct.Id equals cf.CategoryId
                              where c.CategoryId == categoryId
                              select new CarDetailDto
                              {
+                                 Id = c.Id,
                                  CarName = c.CarName,
                                  BrandName = b.Name,
                                  ColorName = cl.Name,
                                  CategoryName = ct.CategoryName,
+                                 ModelYear = c.ModelYear,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description
+                             };
+                return result.ToList();
+            }
+        }
+
+        public List<CarDetailDto> GetCarsDetailsByColorId(int colorId)
+        {
+            using (RentalContext context = new RentalContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join cl in context.Colors
+                             on c.ColorId equals cl.Id
+                             join ct in context.Categories
+                             on c.CategoryId equals ct.Id
+                             //join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             //on ct.Id equals cf.CategoryId
+                             where c.ColorId == colorId
+                             select new CarDetailDto
+                             {
+                                 Id = c.Id,
+                                 CarName = c.CarName,
+                                 BrandName = b.Name,
+                                 ColorName = cl.Name,
+                                 CategoryName = ct.CategoryName,
+                                 ModelYear = c.ModelYear,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description
+                             };
+                return result.ToList();
+            }
+        }
+
+        public List<CarDetailDto> GetCarsDetailsByBrandId(int brandId)
+        {
+            using (RentalContext context = new RentalContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join cl in context.Colors
+                             on c.ColorId equals cl.Id
+                             join ct in context.Categories
+                             on c.CategoryId equals ct.Id
+                             //join cf in context.CarFeatures  // Car Fatures bilgilerine ihtiyac olursa eklenir
+                             //on ct.Id equals cf.CategoryId
+                             where c.BrandId == brandId
+                             select new CarDetailDto
+                             {
+                                 Id = c.Id,
+                                 CarName = c.CarName,
+                                 BrandName = b.Name,
+                                 ColorName = cl.Name,
+                                 CategoryName = ct.CategoryName,
+                                 ModelYear = c.ModelYear,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description
                              };
                 return result.ToList();
             }

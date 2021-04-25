@@ -59,7 +59,17 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<CarDetailDto> GetCarsDetailsByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<CarDetailDto> GetCarsDetailsByCategoryId(int categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarsDetailsByColorId(int colorId)
         {
             throw new NotImplementedException();
         }

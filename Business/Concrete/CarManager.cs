@@ -70,10 +70,22 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetailsByCategoryId(categoryId), Messages.FetchedMessage);
         }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetailsByColorId(colorId), Messages.FetchedMessage);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetailsByBrandId(brandId), Messages.FetchedMessage);
+        }
         public IDataResult<CarDetailDto> GetCarDetailsById(int carId)
         {
             return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailsById(carId), Messages.FetchedMessage);
         }
+
+
 
         [SecuredOperation("car.update,admin")]
         public IResult Update(Car car)
