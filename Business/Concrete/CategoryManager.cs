@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -16,11 +17,14 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+
+        [CacheAspect]
         public IDataResult<List<Category>> GetAll()
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.ListedMessage); 
         }
 
+        [CacheAspect]
         public IDataResult<List<Category>> GetCategoryByCategoryId(int categoryId)
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c=> c.Id == categoryId), Messages.ListedMessage);
