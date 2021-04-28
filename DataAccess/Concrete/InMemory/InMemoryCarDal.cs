@@ -84,6 +84,11 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public Car GetLastAdded<TKey>(Expression<Func<Car, TKey>> sortCondition)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Car car)
         {
             var carUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);

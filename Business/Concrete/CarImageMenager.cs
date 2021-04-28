@@ -21,7 +21,7 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
-        [SecuredOperation("image.add,admin")]
+        //[SecuredOperation("image.add,admin")]
         public IResult Add(IFormFile file, CarImage carImage)
         {
             // en fazla 5 resim yukleyebilir

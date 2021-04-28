@@ -46,23 +46,23 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.CategoryId == categoryId), Messages.ListedMessage);
         }
 
-        [SecuredOperation("car.add,admin")]
+        //[SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
-        public IResult Add(Car car)
+        public IDataResult<Car> Add(Car car)
         {
             if (car.CarName.Length <= 2)
             {
-                return new ErrorResult(Messages.CarNameInvalid);
+                return new ErrorDataResult<Car>(Messages.CarNameInvalid);
             }
             else if(car.DailyPrice <= 0)
             {
-                return new ErrorResult(Messages.CarDailyPriceInvalid);
+                return new ErrorDataResult<Car>(Messages.CarDailyPriceInvalid);
             }
             else
             {
                 _carDal.Add(car);
-                return new Result(true, Messages.MakeMessage(car.CarName , Messages.AddedMessage));
+                return new SuccessDataResult<Car>(_carDal.GetLastAdded<int>(c=> c.Id), Messages.MakeMessage(car.CarName , Messages.AddedMessage));
             }            
         }
 

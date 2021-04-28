@@ -41,6 +41,14 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+        public TEntity GetLastAdded<TKey>(Expression<Func<TEntity, TKey>> sortCondition)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().OrderByDescending(sortCondition).FirstOrDefault();
+            }
+        }
+
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
