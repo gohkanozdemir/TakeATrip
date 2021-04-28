@@ -102,7 +102,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new Result(true, Messages.MakeMessage(car.CarName, Messages.UpdatedMessage));
+            return new SuccessResult(Messages.MakeMessage(car.CarName, Messages.UpdatedMessage));
         }
 
         [SecuredOperation("car.delete,admin")]
@@ -110,7 +110,7 @@ namespace Business.Concrete
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new Result(true, Messages.MakeMessage(car.CarName, Messages.DeletedMessage));
+            return new SuccessResult(Messages.MakeMessage(car.CarName, Messages.DeletedMessage));
 
         }
 

@@ -17,6 +17,19 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        [CacheRemoveAspect("ICategoryService.Get")]
+        public IResult Add(Category category)
+        {
+            _categoryDal.Add(category);
+            return new SuccessResult(Messages.MakeMessage(category.CategoryName, Messages.AddedMessage));
+        }
+
+        [CacheRemoveAspect("ICategoryService.Get")]
+        public IResult Delete(Category category)
+        {
+            _categoryDal.Delete(category);
+            return new SuccessResult(Messages.MakeMessage(category.CategoryName, Messages.DeletedMessage));
+        }
 
         [CacheAspect]
         public IDataResult<List<Category>> GetAll()
@@ -28,6 +41,13 @@ namespace Business.Concrete
         public IDataResult<List<Category>> GetCategoryByCategoryId(int categoryId)
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c=> c.Id == categoryId), Messages.ListedMessage);
+        }
+
+        [CacheRemoveAspect("ICategoryService.Get")]
+        public IResult Update(Category category)
+        {
+            _categoryDal.Update(category);
+            return new SuccessResult(Messages.MakeMessage(category.CategoryName, Messages.UpdatedMessage));
         }
     }
 }
